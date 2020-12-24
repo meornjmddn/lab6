@@ -24,6 +24,10 @@ def ProcessStart(server):
                 numb = server.recv(1024).decode()
                 calc = math.exp(float(numb))
 
+            elif ch == '4':
+                #PowerOf Calculation
+                numb, p = [float(i) for i in server.recv(2048).decode('utf-8').split('\n')]
+                calc = math.pow(numb,p)
             elif ch == '9':
                 server.close()
                 break
