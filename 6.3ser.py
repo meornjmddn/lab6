@@ -57,6 +57,6 @@ if __name__ == '__main__':
             p.start()
 
         except socket.error:
-            print ('an error occurred!')
+            print ('an error has occurred!')
 
     S.close()
