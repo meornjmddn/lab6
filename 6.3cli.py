@@ -26,21 +26,23 @@ while loop:
 
     if ans == '1':
         #log
-        print ('\n [+] Logarithmic Function ')
-        numb = input ('\n Enter Number : ')
-        Client.send(numb.encode())
+        print ('\n [+] Log Function ')
+        numb = input('\n Enter Number : ')
+        b = input('\n Enter base : ')
+        Client.sendall(str.encode('\n'.join([str(numb), str(b)])))
         tot = Client.recv(1024)
+        print ( ' Answer for log ' + numb + ' base ' + b + ' : ' + str(tot.decode()))
 
-        print ( ' Answer for log '+ numb +'  : ' + str(tot.decode()))
     elif ans == '2':
         #Suare Root
-        toor = True
-        while toor:
+        root = True
+        while root:
             print ('\n [+] Square Root Function ')
             numb = input ('\n Enter Number : ')
             if float(numb) <  0:
                 print('\n Negative Number Cant Be Square Root')
             else:
+                root = False
                 Client.send(numb.encode())
                 tot = Client.recv(1024)
 
@@ -63,7 +65,8 @@ while loop:
         p = input('\n Enter Power Of : ')
         Client.sendall(str.encode('\n'.join([str(numb), str(p)])))
         tot = Client.recv(1024)
-        print ( ' Answer for pow ' + numb + ' : ' + str(tot.decode()))
+        print ( ' Answer for ' + numb + ' pow of ' + p + ' : ' + str(tot.decode()))
+
     elif ans == '9':
         #exit
         Client.close()
