@@ -18,6 +18,7 @@ while loop:
     print (' 1. Logarithmic expression ')
     print (' 2. Square Root ')
     print (' 3. Exponential expression ')
+    print (' 4. Power Of ')
     print (' 9. Exit ')
     
     ans = input ('\n Enter your choice : ' )
@@ -30,15 +31,20 @@ while loop:
         Client.send(numb.encode())
         tot = Client.recv(1024)
 
-        print ( ' Answer for log( '+ numb +' ) : ' + str(tot.decode()))
+        print ( ' Answer for log '+ numb +'  : ' + str(tot.decode()))
     elif ans == '2':
-        #Suare Root   
-        print ('\n [+] Square Root Function ')
-        numb = input ('\n Enter Number : ')
-        Client.send(numb.encode())
-        tot = Client.recv(1024)
+        #Suare Root
+        toor = True
+        while toor:
+            print ('\n [+] Square Root Function ')
+            numb = input ('\n Enter Number : ')
+            if float(numb) <  0:
+                print('\n Negative Number Cant Be Square Root')
+            else:
+                Client.send(numb.encode())
+                tot = Client.recv(1024)
 
-        print ( ' Answer for sqrt( ' + numb +' ): ' + str(tot.decode()))
+        print ( ' Answer for sqrt ' + numb +' : ' + str(tot.decode()))
 
 
     elif ans == '3':
@@ -48,9 +54,16 @@ while loop:
         Client.send(numb.encode())
         tot = Client.recv(1024)
 
-        print ( ' Answer for exp( ' + numb + ' ): ' + str(tot.decode()))
+        print ( ' Answer for exp ' + numb + ' : ' + str(tot.decode()))
 
-
+    elif ans == '4':
+        #Power Of
+        print ('\n [+] Power Of Function ')
+        numb = input('\n Enter Number : ')
+        p = input('\n Enter Power Of : ')
+        Client.sendall(str.encode('\n'.join([str(numb), str(p)])))
+        tot = Client.recv(1024)
+        print ( ' Answer for pow ' + numb + ' : ' + str(tot.decode()))
     elif ans == '9':
         #exit
         Client.close()
