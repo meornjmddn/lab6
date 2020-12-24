@@ -17,7 +17,7 @@ def ProcessStart(server):
             elif ch  == '2':
                 #SquareRoot calculation
                 numb = server.recv(1024).decode()
-                calc = float(numb)*float(numb)
+                calc = float(numb)*float(numb) #try to use math.sqrt but it can't read negative number
 
             elif ch  == '3':
                 #exponential Calculation
