@@ -11,13 +11,13 @@ def ProcessStart(server):
 
             if ch == '1':
                 #log calculation
-                numb = server.recv(1024).decode()
-                calc = math.log(float(numb))
+                numb, b = [float(i) for i in server.recv(2048).decode('utf-8').split('\n')]
+                calc = math.log(float(numb),float(b))
 
             elif ch  == '2':
                 #SquareRoot calculation
                 numb = server.recv(1024).decode()
-                calc = float(numb)*float(numb) #try to use math.sqrt but it can't read negative number
+                calc = math.sqrt(float(numb))
 
             elif ch  == '3':
                 #exponential Calculation
